@@ -78,7 +78,6 @@ const modalDescription = document.querySelector("#modalDescription");
 const modalStack = document.querySelector("#modalStack");
 const modalHighlights = document.querySelector("#modalHighlights");
 const modalDemoLink = document.querySelector("#modalDemoLink");
-const modalSourceLink = document.querySelector("#modalSourceLink");
 
 let activeFilter = "all";
 let activeTestimonial = 0;
@@ -120,7 +119,6 @@ function openProjectModal(project) {
   });
 
   modalDemoLink.href = project.demoUrl;
-  modalSourceLink.href = project.sourceUrl;
   projectModal.classList.add("is-open");
   projectModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
@@ -197,13 +195,15 @@ function renderTestimonial(index) {
 
 function animateCounter(element) {
   const target = Number(element.dataset.count);
+  const suffix = element.dataset.suffix || "";
   const duration = 1200;
   const start = performance.now();
 
   function tick(now) {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
-    element.textContent = String(Math.round(target * eased));
+    const value = Math.round(target * eased);
+    element.textContent = `${value}${suffix}`;
 
     if (progress < 1) {
       requestAnimationFrame(tick);
@@ -254,23 +254,53 @@ function handleFormSubmit(event) {
   const data = new FormData(form);
   const name = data.get("name")?.toString().trim();
   const email = data.get("email")?.toString().trim();
-  const projectType = data.get("projectType")?.toString().trim();
   const message = data.get("message")?.toString().trim();
 
-  if (!name || !email || !projectType || !message) {
+  if (!name || !email || !message) {
     formStatus.textContent = "Please complete all fields before sending.";
     return;
   }
 
-  const mailtoSubject = encodeURIComponent(`Portfolio inquiry: ${projectType}`);
-  const mailtoBody = encodeURIComponent(
-    `Name: ${name}\nEmail: ${email}\nProject type: ${projectType}\n\nMessage:\n${message}`
-  );
+  formStatus.textContent = "Sending your inquiry...";
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (submitButton instanceof HTMLButtonElement) {
+    submitButton.disabled = true;
+  }
+  const formData = new FormData();
+  formData.append("Name", name);
+  formData.append("Email", email);
+  formData.append("Message", message);
+  formData.append("_subject", `New portfolio inquiry from ${name}`);
+  formData.append("_replyto", email);
+  formData.append("_template", "table");
+  formData.append("_captcha", "false");
 
-  formStatus.textContent = "Opening your email app with a pre-filled message...";
-  window.location.href =
-    `mailto:jamesdanielmauricio@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-  form.reset();
+  fetch(form.action, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+    },
+    body: formData,
+  })
+    .then(async (response) => {
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(result.message || "Submission failed.");
+      }
+
+      formStatus.textContent =
+        "Inquiry sent successfully. James will receive it by email.";
+      form.reset();
+    })
+    .catch(() => {
+      formStatus.textContent =
+        "The form could not send right now. Please email jamesdanielmauricio@gmail.com directly.";
+    })
+    .finally(() => {
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = false;
+      }
+    });
 }
 
 applyTheme(getSavedTheme());
