@@ -116,7 +116,8 @@ textarea {
   gap: 0.8rem;
 }
 
-.brand__mark {
+.brand__mark,
+.brand__avatar-wrap {
   width: 2.9rem;
   height: 2.9rem;
   display: grid;
@@ -128,6 +129,19 @@ textarea {
   color: #03111e;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
+}
+
+.brand__avatar-wrap {
+  overflow: hidden;
+  padding: 0.12rem;
+}
+
+.brand__avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.88rem;
+  display: block;
 }
 
 .brand__copy {
