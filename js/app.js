@@ -3,7 +3,7 @@ const projects = [
     title: "ichica.co",
     category: "bubble",
     label: "Bubble.io",
-    year: "",
+    year: "2024–2026",
     description:
       "Lottery-style web application with complex draw mechanics, randomized selection logic, ticketing systems, admin dashboards, and secure payment handling for around 140,000 users.",
     stack: ["Bubble.io", "Ticketing systems", "Payment flows"],
@@ -20,9 +20,9 @@ const projects = [
     title: "sparkable.cc",
     category: "bubble",
     label: "Bubble.io",
-    year: "",
+    year: "2025–Present",
     description:
-      "Social platform that enables users to share content, express ideas, and connect through posts, media, and interactive features.",
+      "Social platform for sharing quality content, ideas, and perspectives. Volunteer Bubble.io contribution focused on workflow improvements, performance, and feature delivery.",
     stack: ["Bubble.io", "Database improvements", "Feature delivery"],
     highlights: [
       "Improved workflows and structure for better performance",
@@ -303,11 +303,65 @@ function handleFormSubmit(event) {
     });
 }
 
+function initSectionAnimations() {
+  const animatableSections = document.querySelectorAll("main section[id]:not(#home)");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
+
+  animatableSections.forEach((section) => {
+    section.classList.add("section--animate");
+    observer.observe(section);
+  });
+}
+
+function initScrollTop() {
+  const scrollTopButton = document.querySelector("#scrollTop");
+  if (!scrollTopButton) return;
+
+  window.addEventListener("scroll", () => {
+    scrollTopButton.classList.toggle("is-visible", window.scrollY > 500);
+  }, { passive: true });
+
+  scrollTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+function initMobileNav() {
+  const navToggle = document.querySelector("#navToggle");
+  const siteHeader = document.querySelector(".site-header");
+  if (!navToggle || !siteHeader) return;
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = siteHeader.classList.toggle("nav-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      siteHeader.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
 applyTheme(getSavedTheme());
 renderProjects(activeFilter);
 renderTestimonial(activeTestimonial);
 initCounters();
 initScrollSpy();
+initSectionAnimations();
+initScrollTop();
+initMobileNav();
 
 themeToggle.addEventListener("click", toggleTheme);
 

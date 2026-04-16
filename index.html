@@ -14,14 +14,14 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body data-theme="dark">
     <div class="site-frame">
       <header class="site-header">
         <a class="brand" href="#home">
           <span class="brand__avatar-wrap">
-            <img class="brand__avatar" src="profile.jpg" alt="James Daniel Mauricio" />
+            <img class="brand__avatar" src="assets/profile.jpg" alt="James Daniel Mauricio" />
           </span>
           <span class="brand__copy">
             <strong>James Daniel Mauricio</strong>
@@ -36,6 +36,12 @@
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
         </nav>
+
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
 
         <div class="header-actions">
           <button
@@ -54,7 +60,14 @@
       <main>
         <section class="hero section" id="home">
           <div class="hero__lead">
-            <p class="eyebrow">Bubble.io Developer for No-Code and Low-Code + Vibe Coding</p>
+            <div class="hero__badges">
+              <span class="available-badge">
+                <span class="available-badge__dot"></span>
+                Available for projects
+              </span>
+              <span class="location-badge">Philippines · GMT+8</span>
+            </div>
+            <p class="eyebrow">Senior Bubble.io Developer · No-Code &amp; Low-Code</p>
             <h1>Built for founders who need a no-code app that can actually handle real users.</h1>
             <p class="hero__lede">
               I design and build scalable Bubble.io systems with advanced workflows, reliable
@@ -145,28 +158,44 @@
             <p class="eyebrow">Services</p>
             <h2>A clearer path from idea to production.</h2>
             <p class="section-copy">
-              The portfolio now guides visitors by problem first, so they can quickly tell where I fit.
+              Whether you need a clean build, a workflow audit, or custom logic beyond Bubble's defaults — I've covered all of it across startups, agencies, and international clients.
             </p>
           </div>
 
           <div class="service-grid">
             <article class="service-card">
-              <span class="service-card__step">01</span>
+              <div class="service-card__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                </svg>
+              </div>
               <h3>Build</h3>
               <p>End-to-end Bubble.io app development for MVPs, internal tools, and SaaS products.</p>
             </article>
             <article class="service-card">
-              <span class="service-card__step">02</span>
+              <div class="service-card__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
               <h3>Optimize</h3>
               <p>Workflow cleanup, database restructuring, workload reduction, and performance tuning.</p>
             </article>
             <article class="service-card">
-              <span class="service-card__step">03</span>
+              <div class="service-card__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+                </svg>
+              </div>
               <h3>Integrate</h3>
               <p>Payments, third-party APIs, webhooks, and automation systems connected cleanly.</p>
             </article>
             <article class="service-card">
-              <span class="service-card__step">04</span>
+              <div class="service-card__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
               <h3>Extend</h3>
               <p>Low-code and vibe-coded support when custom logic or scale goes beyond Bubble's default capabilities.</p>
             </article>
@@ -201,30 +230,34 @@
 
             <div class="timeline">
               <article class="timeline-item">
-                <span class="timeline-item__year">2025-Present</span>
+                <div class="timeline-item__dot"></div>
+                <span class="timeline-item__year">2025–Present</span>
                 <div class="timeline-item__content">
-                  <h3>Bubble.io Developer (Volunteer) - Sparkable</h3>
+                  <h3>Bubble.io Developer (Volunteer) — Sparkable</h3>
                   <p>Support sparkable.cc through workflow improvements, debugging, database refinement, and continuous feature development.</p>
                 </div>
               </article>
               <article class="timeline-item">
-                <span class="timeline-item__year">2023-Present</span>
+                <div class="timeline-item__dot"></div>
+                <span class="timeline-item__year">2023–Present</span>
                 <div class="timeline-item__content">
-                  <h3>Bubble.io Developer (Freelance) - G-AIM Consulting</h3>
+                  <h3>Bubble.io Developer (Freelance) — G-AIM Consulting</h3>
                   <p>Deliver scalable client apps with complex business logic, APIs, automation, and low-code implementation for international teams.</p>
                 </div>
               </article>
               <article class="timeline-item">
-                <span class="timeline-item__year">2024-2026</span>
+                <div class="timeline-item__dot"></div>
+                <span class="timeline-item__year">2024–2026</span>
                 <div class="timeline-item__content">
-                  <h3>Bubble.io Developer (Full-Time) - Seleby Inc.</h3>
-                  <p>Built and maintained ichica.co, including draw logic, ticketing, admin tools, secure payments, and system stability for about 140,000 users.</p>
+                  <h3>Bubble.io Developer (Full-Time) — Seleby Inc.</h3>
+                  <p>Built and maintained ichica.co — draw logic, ticketing, admin tools, secure payments, and system stability for ~140,000 users.</p>
                 </div>
               </article>
               <article class="timeline-item">
-                <span class="timeline-item__year">2021-2022</span>
+                <div class="timeline-item__dot"></div>
+                <span class="timeline-item__year">2021–2022</span>
                 <div class="timeline-item__content">
-                  <h3>Bubble.io Developer (Full-Time) - 247 Back Office Professionals</h3>
+                  <h3>Bubble.io Developer (Full-Time) — 247 Back Office Professionals</h3>
                   <p>Developed internal systems, improved efficiency, enforced privacy-aware rules, and supported operations with reliable tooling.</p>
                 </div>
               </article>
@@ -233,7 +266,7 @@
 
           <aside class="experience-side">
             <article class="panel quote-panel" id="testimonialCard">
-              <p class="eyebrow">Highlights</p>
+              <p class="eyebrow">Career Highlights</p>
               <p class="testimonial-card__quote"></p>
               <footer class="testimonial-card__meta">
                 <strong class="testimonial-card__name"></strong>
@@ -257,9 +290,9 @@
         <section class="section contact-layout" id="contact">
           <div class="section-heading">
             <p class="eyebrow">Contact</p>
-            <h2>Make it easy for clients to reach out with the right context.</h2>
+            <h2>Ready to work together?</h2>
             <p class="section-copy">
-              The contact experience is structured around the kinds of work I actually do.
+              Describe your project and I'll respond within 24 hours. Currently available for new engagements.
             </p>
           </div>
 
@@ -312,7 +345,30 @@
           </div>
         </section>
       </main>
+
+      <footer class="site-footer">
+        <div class="site-footer__inner">
+          <p class="site-footer__copy">&copy; 2026 James Daniel Mauricio &middot; Senior Bubble.io Developer</p>
+          <nav class="site-footer__links" aria-label="Footer navigation">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <div class="site-footer__social">
+            <a href="mailto:jamesdanielmauricio@gmail.com">Email</a>
+            <a href="https://linkedin.com/in/jamesdanielmauricio" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </footer>
     </div>
+
+    <button class="scroll-top" id="scrollTop" type="button" aria-label="Scroll to top">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
 
     <div class="modal" id="projectModal" aria-hidden="true">
       <div class="modal__backdrop" data-close-modal="true"></div>
@@ -358,6 +414,6 @@
       </article>
     </template>
 
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
