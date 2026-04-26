@@ -308,14 +308,11 @@
               class="panel contact-form"
               id="contactForm"
               method="POST"
-              action="https://formsubmit.co/ajax/1b5aaf878a826afa6df5008ec088a112"
+              action="https://api.web3forms.com/submit"
               novalidate
             >
-              <input type="hidden" name="_subject" value="Portfolio inquiry from jamesdanielmauricio.com" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_replyto" value="" />
-              <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden />
+              <input type="hidden" name="access_key" value="b37d9952-d841-4615-8f89-c0845153e0fc" />
+              <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" />
               <label>
                 Name
                 <input type="text" name="name" placeholder="Your name" required />
@@ -338,9 +335,6 @@
                 <button class="button button--primary" type="submit">Send inquiry</button>
                 <p class="form-status" id="formStatus" aria-live="polite"></p>
               </div>
-              <p class="contact-form__note">
-                First-time setup may send a one-time activation email to James before submissions start arriving normally.
-              </p>
             </form>
           </div>
         </section>

@@ -266,25 +266,19 @@ function handleFormSubmit(event) {
   if (submitButton instanceof HTMLButtonElement) {
     submitButton.disabled = true;
   }
-  const formData = new FormData();
-  formData.append("Name", name);
-  formData.append("Email", email);
-  formData.append("Message", message);
-  formData.append("_subject", `New portfolio inquiry from ${name}`);
-  formData.append("_replyto", email);
-  formData.append("_template", "table");
-  formData.append("_captcha", "false");
+
+  const formData = new FormData(form);
+  formData.set("subject", `New portfolio inquiry from ${name}`);
+  formData.set("from_name", name);
 
   fetch(form.action, {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-    },
+    headers: { Accept: "application/json" },
     body: formData,
   })
     .then(async (response) => {
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) {
+      if (!result.success) {
         throw new Error(result.message || "Submission failed.");
       }
 
