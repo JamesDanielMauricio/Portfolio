@@ -1,7 +1,7 @@
 const projects = [
   {
     title: "ichica.co",
-    category: "bubble",
+    categories: ["bubble"],
     label: "Bubble.io",
     year: "2024–2026",
     description:
@@ -18,7 +18,7 @@ const projects = [
   },
   {
     title: "sparkable.cc",
-    category: "bubble",
+    categories: ["bubble"],
     label: "Bubble.io",
     year: "2025–Present",
     description:
@@ -32,6 +32,23 @@ const projects = [
     demoUrl: "https://sparkable.cc",
     sourceUrl: "https://sparkable.cc",
     colors: ["#67f0c3", "#087b7b"],
+  },
+  {
+    title: "Ichica Gacha",
+    categories: ["ai-assisted"],
+    label: "AI-Assisted Development",
+    year: "2026",
+    description:
+      "Self-made gacha web app built with AI-assisted development using Claude Code, translating product ideas into a live interactive experience with faster iteration on UI, logic, and delivery.",
+    stack: ["Claude Code", "AI-assisted development", "Interactive web app"],
+    highlights: [
+      "Built as a personal project to strengthen AI-assisted product delivery skills",
+      "Used AI collaboration to speed up iteration across UX and app logic",
+      "Shipped as a live web experience with a public demo",
+    ],
+    demoUrl: "https://card-gacha-z6fa.onrender.com/",
+    sourceUrl: "https://card-gacha-z6fa.onrender.com/",
+    colors: ["#ffd56a", "#ff7a59"],
   },
 ];
 
@@ -81,6 +98,11 @@ const modalDemoLink = document.querySelector("#modalDemoLink");
 
 let activeFilter = "all";
 let activeTestimonial = 0;
+const filterLabels = {
+  all: "all projects",
+  bubble: "Bubble.io projects",
+  "ai-assisted": "AI-assisted projects",
+};
 
 function getSavedTheme() {
   return localStorage.getItem("portfolio-theme") || "dark";
@@ -141,7 +163,7 @@ function createProjectCard(project) {
   const stackList = fragment.querySelector(".project-card__stack");
   const detailsButton = fragment.querySelector(".project-card__button");
 
-  card.dataset.category = project.category;
+  card.dataset.category = project.categories.join(" ");
   media.style.setProperty("--card-start", project.colors[0]);
   media.style.setProperty("--card-end", project.colors[1]);
   tag.textContent = project.label;
@@ -161,7 +183,7 @@ function createProjectCard(project) {
 function getVisibleProjects(filter = "all") {
   return filter === "all"
     ? projects
-    : projects.filter((project) => project.category === filter);
+    : projects.filter((project) => project.categories.includes(filter));
 }
 
 function renderProjects(filter = "all") {
@@ -172,10 +194,7 @@ function renderProjects(filter = "all") {
     projectsGrid.appendChild(createProjectCard(project));
   });
 
-  filterStatus.textContent =
-    filter === "all"
-      ? `Showing all projects (${visibleProjects.length})`
-      : `Showing Bubble.io projects (${visibleProjects.length})`;
+  filterStatus.textContent = `Showing ${filterLabels[filter] || "filtered projects"} (${visibleProjects.length})`;
 }
 
 function updateFilterState(nextFilter) {
